@@ -1,0 +1,6 @@
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\bin\Debug\Decision Tree Trail.exe.config
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\bin\Debug\Decision Tree Trail.exe
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\bin\Debug\Decision Tree Trail.pdb
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\obj\Debug\Decision Tree Trail.exe
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\obj\Debug\Decision Tree Trail.pdb
+\\Mac\Home\Documents\Visual Studio 2017\Projects\Decision Tree Trail\Decision Tree Trail\obj\Debug\Decision Tree Trail.csprojResolveAssemblyReference.cache
