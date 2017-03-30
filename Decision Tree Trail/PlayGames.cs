@@ -1,11 +1,11 @@
-﻿using Decision_Tree_Trail.PropertyAttributes;
+﻿using Generic_Decision_Tree.PropertyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Decision_Tree_Trail
+namespace Generic_Decision_Tree
 {
     public class PlayGames
     {
@@ -17,11 +17,11 @@ namespace Decision_Tree_Trail
         #endregion
 
         #region Properties
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Excited { get => m_Excited; set => m_Excited = value; }
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Hungry { get => m_Hungry; set => m_Hungry = value; }
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string TimeOfDay { get => m_TimeOfDay; set => m_TimeOfDay = value; }
 
         [ClassAnswerAttribute()]

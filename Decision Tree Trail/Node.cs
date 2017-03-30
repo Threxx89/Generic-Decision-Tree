@@ -1,4 +1,4 @@
-﻿using Decision_Tree_Trail.PropertyAttributes;
+﻿using Generic_Decision_Tree.PropertyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Decision_Tree_Trail
+namespace Generic_Decision_Tree
 {
    public class Node<T>
     {
@@ -16,13 +16,13 @@ namespace Decision_Tree_Trail
         private List<Node<T>> m_Decisions;
         private string m_AttributeName;
         private List<T> m_DataSet;
-        private List<Attribute> m_Attributes;
+        private List<ColumnAttribute> m_Attributes;
         private bool? m_Answer =null;
         #endregion
 
         #region Properties
         public string Name { get => m_Name; set => m_Name = value; }
-        public List<Attribute> Attributes { get => m_Attributes;}
+        public List<ColumnAttribute> Attributes { get => m_Attributes;}
         public Choice Chosen { get => m_Chosen;}
         public string AttributeName { get => m_AttributeName; }
         #endregion
@@ -30,7 +30,7 @@ namespace Decision_Tree_Trail
         public Node(string name, List<T> data,bool? answer)
         {
             Name = name;
-            m_Attributes = new List<Attribute>();
+            m_Attributes = new List<ColumnAttribute>();
             m_Decisions = new List<Node<T>>();
             m_Chosen = new Choice();
             m_DataSet = data;
@@ -41,11 +41,11 @@ namespace Decision_Tree_Trail
 
         public void AddAttribute(string attributeName, string choice, bool yesNo, double classObjectEntropy)
         {
-            Attribute selectedAttribute = m_Attributes.FirstOrDefault(x => x.Name.ToUpper() == attributeName.ToUpper());
+            ColumnAttribute selectedAttribute = m_Attributes.FirstOrDefault(x => x.Name.ToUpper() == attributeName.ToUpper());
 
            if(!m_Attributes.Contains(selectedAttribute))
             {
-                Attribute newAttribute = new Attribute(attributeName);
+                ColumnAttribute newAttribute = new ColumnAttribute(attributeName);
                 newAttribute.AddData(choice, yesNo, classObjectEntropy);
                 m_Attributes.Add(newAttribute);
             }
@@ -74,7 +74,7 @@ namespace Decision_Tree_Trail
 
         private void DoThings()
         {
-            PropertyInfo[] ClassAnswerAttributes = typeof(T).GetProperties().Where(x => System.Attribute.IsDefined(x,typeof(ClassCretiriaAttribute))).ToArray();
+            PropertyInfo[] ClassAnswerAttributes = typeof(T).GetProperties().Where(x => System.Attribute.IsDefined(x,typeof(ClassCriteriaAttribute))).ToArray();
             PropertyInfo ClassAnswerAttribute = typeof(T).GetProperties().FirstOrDefault(x => System.Attribute.IsDefined(x, typeof(ClassAnswerAttribute)));
 
             if (m_DataSet.Where(x => Convert.ToBoolean(x.GetType().GetProperty(ClassAnswerAttribute.Name).GetValue(x)) == true).Count() == m_DataSet.Count)
@@ -102,9 +102,9 @@ namespace Decision_Tree_Trail
                     }
                 }
 
-                Attribute selectedValue = null;
+                ColumnAttribute selectedValue = null;
                 double highValue = 0;
-                foreach (Attribute selectedAttribuite in this.Attributes)
+                foreach (ColumnAttribute selectedAttribuite in this.Attributes)
                 {
                     if (highValue < selectedAttribuite.InfoGain)
                     {

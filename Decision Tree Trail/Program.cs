@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Decision_Tree_Trail
+namespace Generic_Decision_Tree
 {
     class Program
     {

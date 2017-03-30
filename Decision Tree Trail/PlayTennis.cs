@@ -1,4 +1,4 @@
-﻿using Decision_Tree_Trail.PropertyAttributes;
+﻿using Generic_Decision_Tree.PropertyAttributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Decision_Tree_Trail
+namespace Generic_Decision_Tree
 {
     public class PlayTennis
     {
@@ -19,13 +19,13 @@ namespace Decision_Tree_Trail
         #endregion
 
         #region Properties
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Outlook { get => m_Outlook; set => m_Outlook = value; }
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Temperature { get => m_Temperature; set => m_Temperature = value; }
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Humidity { get => m_Humidity; set => m_Humidity = value; }
-        [ClassCretiriaAttribute()]
+        [ClassCriteriaAttribute()]
         public string Wind { get => m_Wind; set => m_Wind = value; }
 
         [ClassAnswerAttribute()]

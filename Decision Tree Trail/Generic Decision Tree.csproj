@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BE5E8AD7-9F00-4DDD-B91B-FB279591C10F}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Decision_Tree_Trail</RootNamespace>
-    <AssemblyName>Decision Tree Trail</AssemblyName>
+    <RootNamespace>Generic_Decision_Tree</RootNamespace>
+    <AssemblyName>Generic Decision Tree</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -51,7 +51,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyAttributes\ClassAnswerAttribute.cs" />
-    <Compile Include="PropertyAttributes\ClassCretiriaAttribute.cs" />
+    <Compile Include="PropertyAttributes\ClassCriteriaAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
