@@ -7,10 +7,21 @@ using System.Threading.Tasks;
 
 namespace Generic_Decision_Tree.PropertyAttributes
 {
-   public class ClassAnswerAttribute : DisplayNameAttribute
+    ///<summary>
+    ///Class Answer Attribute
+    ///</summary>
+    /// <remarks> 
+    /// Use to Identify the answer column in our class
+    /// </remarks>
+
+    public class ClassAnswerAttribute : DisplayNameAttribute
     {
         #region Private Member
         private string m_Name;
+        #endregion
+
+        #region Properties
+        public string Name { get => m_Name; }
         #endregion
 
         #region Constructor
@@ -23,10 +34,6 @@ namespace Generic_Decision_Tree.PropertyAttributes
         {
 
         }
-        #endregion
-
-        #region Properties
-        public string Name { get => m_Name;}
         #endregion
     }
 }

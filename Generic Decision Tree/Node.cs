@@ -14,7 +14,7 @@ namespace Generic_Decision_Tree
         private string m_Name;
         private Choice m_Chosen;
         private List<Node<T>> m_Decisions;
-        private string m_AttributeName;
+        private string m_ColumnAttributeName;
         private List<T> m_DataSet;
         private List<ColumnAttribute> m_Attributes;
         private bool? m_Answer =null;
@@ -24,7 +24,7 @@ namespace Generic_Decision_Tree
         public string Name { get => m_Name; set => m_Name = value; }
         public List<ColumnAttribute> Attributes { get => m_Attributes;}
         public Choice Chosen { get => m_Chosen;}
-        public string AttributeName { get => m_AttributeName; }
+        public string AttributeName { get => m_ColumnAttributeName; }
         #endregion
 
         public Node(string name, List<T> data,bool? answer)
@@ -36,10 +36,16 @@ namespace Generic_Decision_Tree
             m_DataSet = data;
             m_Answer = answer;
 
-            DoThings();
+            BuildDecisionTree();
         }
 
-        public void AddAttribute(string attributeName, string choice, bool yesNo, double classObjectEntropy)
+        ///<summary>
+        ///ColumnAttribute
+        ///</summary>
+        /// <remarks> 
+        /// Ad
+        /// </remarks>
+        public void AddColumnAttribute(string attributeName, string choice, bool yesNo, double classObjectEntropy)
         {
             ColumnAttribute selectedAttribute = m_Attributes.FirstOrDefault(x => x.Name.ToUpper() == attributeName.ToUpper());
 
@@ -72,7 +78,36 @@ namespace Generic_Decision_Tree
             return answer;
         }
 
-        private void DoThings()
+
+        ///<summary>
+        ///Get Best Info Gain Attribute
+        ///</summary>
+        /// <remarks> 
+        /// Looks through all given attributes and return the attribute with the highest info gian value.
+        /// </remarks>
+        private ColumnAttribute GetBestInfoGainAttribute(List<ColumnAttribute> attributes) 
+        {
+            ColumnAttribute selectedValue = null;
+            double highValue = 0;
+            foreach (ColumnAttribute selectedAttribute in attributes)
+            {
+                if (highValue < selectedAttribute.InfoGain)
+                {
+                    highValue = selectedAttribute.InfoGain;
+                    selectedValue = selectedAttribute;
+                    m_ColumnAttributeName = selectedValue.Name;
+                }
+            }
+            return selectedValue;
+        }
+
+        ///<summary>
+        ///Build Decision Tree
+        ///</summary>
+        /// <remarks> 
+        /// Evaluates historical date and create a decision tree to prodict future answer for given data
+        /// </remarks>
+        private void BuildDecisionTree()
         {
             PropertyInfo[] ClassAnswerAttributes = typeof(T).GetProperties().Where(x => System.Attribute.IsDefined(x,typeof(ClassCriteriaAttribute))).ToArray();
             PropertyInfo ClassAnswerAttribute = typeof(T).GetProperties().FirstOrDefault(x => System.Attribute.IsDefined(x, typeof(ClassAnswerAttribute)));
@@ -88,37 +123,27 @@ namespace Generic_Decision_Tree
 
             if (m_Answer == null)
             {
-                foreach (T tennisDay in m_DataSet)
+                foreach (T dataRow in m_DataSet)
                 {
-                    this.Chosen.GiveAnswer(Convert.ToBoolean(tennisDay.GetType().GetProperty(ClassAnswerAttribute.Name).GetValue(tennisDay)));
+                    this.Chosen.GiveAnswer(Convert.ToBoolean(dataRow.GetType().GetProperty(ClassAnswerAttribute.Name).GetValue(dataRow)));
 
                     foreach (PropertyInfo attribute in ClassAnswerAttributes)
                     {
-                        this.AddAttribute(
+                        this.AddColumnAttribute(
                             attribute.Name,
-                            Convert.ToString(tennisDay.GetType().GetProperty(attribute.Name).GetValue(tennisDay)),
-                            Convert.ToBoolean(tennisDay.GetType().GetProperty(ClassAnswerAttribute.Name).GetValue(tennisDay)),
+                            Convert.ToString(dataRow.GetType().GetProperty(attribute.Name).GetValue(dataRow)),
+                            Convert.ToBoolean(dataRow.GetType().GetProperty(ClassAnswerAttribute.Name).GetValue(dataRow)),
                             this.Chosen.Entropy);
                     }
                 }
 
-                ColumnAttribute selectedValue = null;
-                double highValue = 0;
-                foreach (ColumnAttribute selectedAttribuite in this.Attributes)
-                {
-                    if (highValue < selectedAttribuite.InfoGain)
-                    {
-                        highValue = selectedAttribuite.InfoGain;
-                        selectedValue = selectedAttribuite;
-                        m_AttributeName = selectedValue.Name;
-                    }
-                }
+                ColumnAttribute selectedAttribute = GetBestInfoGainAttribute(this.Attributes);
 
-                if (selectedValue != null)
+                if (selectedAttribute != null)
                 {
-                    foreach (KeyValuePair<string, Choice> chosen in selectedValue.ChoiceCount)
+                    foreach (KeyValuePair<string, Choice> chosen in selectedAttribute.ChoiceCount)
                     {
-                        List<T> newData = m_DataSet.Where(x => Convert.ToString(x.GetType().GetProperty(selectedValue.Name).GetValue(x)).ToUpper() == chosen.Key).ToList();
+                        List<T> newData = m_DataSet.Where(x => Convert.ToString(x.GetType().GetProperty(selectedAttribute.Name).GetValue(x)).ToUpper() == chosen.Key).ToList();
                         m_Decisions.Add(new Node<T>(chosen.Key, newData, m_Answer));
                     }
 

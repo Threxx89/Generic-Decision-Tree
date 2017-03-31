@@ -42,9 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attribute.cs" />
     <Compile Include="CalculationHelper.cs" />
     <Compile Include="Choice.cs" />
+    <Compile Include="ColumnAttribute.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="PlayGames.cs" />
     <Compile Include="PlayTennis.cs" />
