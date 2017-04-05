@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Generic_Decision_Tree.DecisionTreeClasses;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Generic_Decision_Tree
 {
@@ -10,7 +10,9 @@ namespace Generic_Decision_Tree
     {
         static void Main(string[] args)
         {
-            List<PlayTennis> playTennisDays = new List<PlayTennis>(); 
+            //TreeContext.Instance.Database.Delete();
+
+            List<PlayTennis> playTennisDays = new List<PlayTennis>();
             playTennisDays.Add(new PlayTennis("sunny", "hot", "high", "strong", false));
             playTennisDays.Add(new PlayTennis("sunny", "hot", "high", "weak", false));
             playTennisDays.Add(new PlayTennis("overcast", "hot", "high", "weak", true));
@@ -26,29 +28,15 @@ namespace Generic_Decision_Tree
             playTennisDays.Add(new PlayTennis("overcast", "hot", "normal", "weak", true));
             playTennisDays.Add(new PlayTennis("rain", "mild", "high", "strong", false));
 
-            Node<PlayTennis> tennisTree = new Node<PlayTennis>("PlayTennis",playTennisDays, null);
+            TreeContext.Instance.PlayTennis.AddRange(playTennisDays);
+            TreeContext.Instance.SaveChanges();
+            var query = from c in TreeContext.Instance.PlayTennis
+                        select c;
 
-            Console.WriteLine(tennisTree.MakeDecision(new PlayTennis("overcast", "mild", "high", "strong")));
+             Node<PlayTennis> tennisTree = new Node<PlayTennis>("PlayTennis",playTennisDays, null);
 
-            List<PlayGames> playGames = new List<PlayGames>();
-            playGames.Add(new PlayGames("yes", "yes", "night", true));
-            playGames.Add(new PlayGames("maybe", "yes", "day", false));
-            playGames.Add(new PlayGames("yes", "no", "night", true));
-            playGames.Add(new PlayGames("no", "no", "day", false));
-            playGames.Add(new PlayGames("no", "no", "night", false));
-            playGames.Add(new PlayGames("yes", "yes", "night", true));
-            playGames.Add(new PlayGames("maybe", "yes", "day", false));
-            playGames.Add(new PlayGames("yes", "no", "day", false));
-            playGames.Add(new PlayGames("maybe", "no", "night", true));
-            playGames.Add(new PlayGames("no", "yes", "day", false));
-            playGames.Add(new PlayGames("yes", "no", "night", true));
-            playGames.Add(new PlayGames("yes", "no", "day", false));
-            playGames.Add(new PlayGames("yes", "yes", "night", true));
-            playGames.Add(new PlayGames("yes", "yes", "night", true));
+             Console.WriteLine(tennisTree.MakeDecision(new PlayTennis("overcast", "mild", "high", "strong")));
 
-            Node<PlayGames> playGamesNode = new Node<PlayGames>("PlayGames", playGames, null);
-
-            Console.WriteLine(playGamesNode.MakeDecision(new PlayGames("yes", "yes", "night")));
 
             Console.ReadKey();
        

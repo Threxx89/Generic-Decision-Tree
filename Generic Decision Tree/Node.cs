@@ -39,12 +39,6 @@ namespace Generic_Decision_Tree
             BuildDecisionTree();
         }
 
-        ///<summary>
-        ///ColumnAttribute
-        ///</summary>
-        /// <remarks> 
-        /// Ad
-        /// </remarks>
         public void AddColumnAttribute(string attributeName, string choice, bool yesNo, double classObjectEntropy)
         {
             ColumnAttribute selectedAttribute = m_Attributes.FirstOrDefault(x => x.Name.ToUpper() == attributeName.ToUpper());

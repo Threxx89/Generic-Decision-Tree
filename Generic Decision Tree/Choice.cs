@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Generic_Decision_Tree.HelperClass;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
