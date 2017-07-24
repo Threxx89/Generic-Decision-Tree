@@ -9,3 +9,13 @@ C:\Development\Projects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\En
 C:\Development\Projects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.exe
 C:\Development\Projects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.pdb
 C:\Development\Projects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.csprojResolveAssemblyReference.cache
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\Generic Decision Tree.exe.config
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\Generic Decision Tree.exe
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\Generic Decision Tree.pdb
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\EntityFramework.dll
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\EntityFramework.SqlServer.dll
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\EntityFramework.xml
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\bin\Debug\EntityFramework.SqlServer.xml
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.csprojResolveAssemblyReference.cache
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.exe
+E:\PetProjects\Generic-Decision-Tree\Generic Decision Tree\obj\Debug\Generic Decision Tree.pdb
